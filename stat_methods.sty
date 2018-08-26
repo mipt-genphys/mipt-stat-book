@@ -1,0 +1,44 @@
+\usepackage{amsmath}
+\usepackage{amssymb} 
+
+%%% Language setting for (xe|lua)latex %%%
+\usepackage{fontspec}
+\usepackage[math-style=TeX]{unicode-math}
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+\newfontfamily{\cyrillicfonttt}{CMU Serif}
+\setmathfont{XITS Math}[math-style=TeX]
+
+\usepackage{polyglossia}
+\setdefaultlanguage[spelling=modern]{russian}
+
+\usepackage{cyrmathtext}
+
+\usepackage{hyperref}
+\hypersetup{%
+	pdfencoding=auto
+}
+
+\usepackage{babel}
+
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{todonotes}
+
+
+\newcommand{\example}[1]{
+    \noindent\fbox{
+        \begin{minipage}{0.95\textwidth}
+            \textbf{Пример.} #1
+        \end{minipage}
+    }
+}
+
+\newcommand{\disclaimer}[1]{
+    \noindent\fcolorbox{red}{white}{
+        \begin{minipage}{0.95\textwidth}
+            #1
+        \end{minipage}
+    }
+}
