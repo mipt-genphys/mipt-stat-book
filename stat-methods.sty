@@ -17,7 +17,9 @@
 
 \usepackage{hyperref}
 \hypersetup{%
-	pdfencoding=auto
+    colorlinks = true,
+    urlcolor = blue,
+	pdfencoding = auto
 }
 
 \usepackage{babel}
@@ -31,6 +33,14 @@
     \noindent\fbox{
         \begin{minipage}{0.95\textwidth}
             \textbf{Пример.} #1
+        \end{minipage}
+    }
+}
+
+\newcommand{\note}[1]{
+    \noindent\fbox{
+        \begin{minipage}{0.95\textwidth}
+            #1
         \end{minipage}
     }
 }
