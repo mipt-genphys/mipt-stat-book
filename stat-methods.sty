@@ -47,7 +47,13 @@
     }
 }
 
-\newenvironment{longnote}{\smallskip\noindent\small}{}
+\newenvironment{longnote}{
+    \noindent\fbox{
+        \begin{minipage}{0.95\linegoal}
+}{
+        \end{minipage}
+    }
+}
 
 \newcommand{\disclaimer}[1]{
     \noindent\fcolorbox{red}{white}{
