@@ -1,0 +1,16 @@
+*.yaml
+*.bak*
+*.gz
+*.aux
+*.log
+*eps-converted-to.pdf
+
+*.orig
+*.project
+
+build/**
+.gradle
+.vscode
+.project
+.settings
+.idea/

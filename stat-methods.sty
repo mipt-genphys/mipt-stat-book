@@ -1,37 +1,39 @@
-\usepackage{amsmath}
-\usepackage{amssymb} 
+\RequirePackage{amsmath}
+\RequirePackage{amssymb} 
 
 %%% Language setting for (xe|lua)latex %%%
-\usepackage{fontspec}
-\usepackage[math-style=TeX]{unicode-math}
+\RequirePackage{fontspec}
+\RequirePackage[math-style=TeX]{unicode-math}
 \setmainfont{CMU Serif}
 \setsansfont{CMU Sans Serif}
 \setmonofont{CMU Typewriter Text}
 \newfontfamily{\cyrillicfonttt}{CMU Serif}
 \setmathfont{XITS Math}[math-style=TeX]
 
-\usepackage{polyglossia}
+\RequirePackage{polyglossia}
 \setdefaultlanguage[spelling=modern]{russian}
 
-\usepackage{cyrmathtext}
+\RequirePackage{cyrmathtext}
 
-\usepackage{hyperref}
+\RequirePackage{hyperref}
 \hypersetup{%
     colorlinks = true,
     urlcolor = blue,
 	pdfencoding = auto
 }
 
-\usepackage{babel}
+\RequirePackage{babel}
 
-\usepackage{xcolor}
-\usepackage{graphicx}
-\usepackage{todonotes}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{todonotes}
 
+
+\RequirePackage{linegoal}
 
 \newcommand{\example}[1]{
     \noindent\fbox{
-        \begin{minipage}{0.95\textwidth}
+        \begin{minipage}{0.95\linegoal}
             \textbf{Пример.} #1
         \end{minipage}
     }
@@ -39,7 +41,7 @@
 
 \newcommand{\note}[1]{
     \noindent\fbox{
-        \begin{minipage}{0.95\textwidth}
+        \begin{minipage}{0.95\linegoal}
             #1
         \end{minipage}
     }
@@ -47,8 +49,10 @@
 
 \newcommand{\disclaimer}[1]{
     \noindent\fcolorbox{red}{white}{
-        \begin{minipage}{0.95\textwidth}
+        \begin{minipage}{0.95\linegoal}
             #1
         \end{minipage}
     }
 }
+
+\newcommand{\average}[1]{\ensuremath{\left<#1\right>}}
