@@ -28,39 +28,30 @@
 \RequirePackage{graphicx}
 \RequirePackage{todonotes}
 
-
-\RequirePackage{linegoal}
+\RequirePackage{mdframed}
 
 \newcommand{\example}[1]{
-    \noindent\fbox{
-        \begin{minipage}{0.95\linegoal}
+    \noindent\begin{mdframed}
             \textbf{Пример.} #1
-        \end{minipage}
-    }
+    \end{mdframed}
 }
 
 \newcommand{\note}[1]{
-    \noindent\fbox{
-        \begin{minipage}{0.95\linegoal}
+    \noindent\begin{mdframed}
             #1
-        \end{minipage}
-    }
+    \end{mdframed}
 }
 
 \newenvironment{longnote}{
-    \noindent\fbox{
-        \begin{minipage}{0.95\linegoal}
+    \noindent\begin{mdframed}
 }{
-        \end{minipage}
-    }
+    \end{mdframed}
 }
 
 \newcommand{\disclaimer}[1]{
-    \noindent\fcolorbox{red}{white}{
-        \begin{minipage}{0.95\linegoal}
+    \noindent\begin{mdframed}[linecolor=red]
             #1
-        \end{minipage}
-    }
+    \end{mdframed}
 }
 
 \newcommand{\average}[1]{\ensuremath{\left<#1\right>}}
