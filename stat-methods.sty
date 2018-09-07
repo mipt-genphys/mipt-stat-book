@@ -1,51 +1,75 @@
+\RequirePackage{cmap} % для корректной генерации русского текста в PDF
+\RequirePackage{mathtext} % русские буквы в формулах
+\RequirePackage[T2A]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[russian]{babel}
+
 \RequirePackage{amsmath}
-\RequirePackage{amssymb} 
+\RequirePackage{amssymb}
+
+\RequirePackage{indentfirst} % отступ первого абзаца
+\RequirePackage{icomma} % правильная десятичная запятая
+
+\RequirePackage[font=small, labelsep=period]{caption}
+\RequirePackage[pdftex]{geometry}
+\geometry{inner=1.5cm, outer=1.7cm, top=1.5cm, bottom=1.8cm}
 
 %%% Language setting for (xe|lua)latex %%%
-\RequirePackage{fontspec}
-\RequirePackage[math-style=TeX]{unicode-math}
-\setmainfont{CMU Serif}
-\setsansfont{CMU Sans Serif}
-\setmonofont{CMU Typewriter Text}
-\newfontfamily{\cyrillicfonttt}{CMU Serif}
-\setmathfont{XITS Math}[math-style=TeX]
+% \RequirePackage{fontspec}
+% \RequirePackage[math-style=TeX]{unicode-math}
+% \setmainfont{CMU Serif}
+% \setsansfont{CMU Sans Serif}
+% \setmonofont{CMU Typewriter Text}
+% \newfontfamily{\cyrillicfonttt}{CMU Serif}
+% \setmathfont{XITS Math}[math-style=TeX]
 
-\RequirePackage{polyglossia}
-\setdefaultlanguage[spelling=modern]{russian}
+% \RequirePackage{polyglossia}
+% \setdefaultlanguage[spelling=modern]{russian}
 
-\RequirePackage{cyrmathtext}
+% \RequirePackage{cyrmathtext}
 
 \RequirePackage{hyperref}
 \hypersetup{%
-    colorlinks = true,
-    urlcolor = blue,
-	pdfencoding = auto
+    colorlinks = true,%
+    urlcolor = blue,%
+    pdfencoding = auto%
 }
 
-\RequirePackage{babel}
+% \RequirePackage{babel}
 
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{todonotes}
 
-\RequirePackage[nobreak = true]{mdframed}
+\RequirePackage[%
+leftmargin=1pt,%
+topline=false,%
+bottomline=false,%
+skipabove=\medskipamount,%
+skipbelow=\medskipamount]{mdframed}
 
-\newcommand{\example}[1]{
-    \noindent\begin{mdframed}
-            \textbf{Пример.} #1
-    \end{mdframed}
+\newcommand{\example}[1]{%
+\begin{mdframed}
+\textbf{Пример.~}#1\par
+\end{mdframed}%
 }
 
-\newcommand{\note}[1]{
-    \noindent\begin{mdframed}
-            #1
-    \end{mdframed}
+\newcommand{\exercize}[1]{%
+\begin{mdframed}
+\textbf{Упражнение.~}#1\par
+\end{mdframed}%
 }
 
-\newenvironment{longnote}{
-    \noindent\begin{mdframed}
-}{
-    \end{mdframed}
+\newcommand{\note}[1]{%
+\begin{mdframed}
+\textbf{Замечание.~}#1\par
+\end{mdframed}%
+}
+
+\newenvironment{longnote}{%
+\begin{mdframed}
+}{%
+\end{mdframed}%
 }
 
 \newcommand{\disclaimer}[1]{
