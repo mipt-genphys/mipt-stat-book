@@ -49,19 +49,19 @@ skipabove=\medskipamount,%
 skipbelow=\medskipamount]{mdframed}
 
 \newcommand{\example}[1]{%
-\begin{mdframed}
+\begin{mdframed}\small
 \textbf{Пример.~}#1\par
 \end{mdframed}%
 }
 
 \newcommand{\exercise}[1]{%
-\begin{mdframed}
+\begin{mdframed}\small
 \textbf{Упражнение.~}#1\par
 \end{mdframed}%
 }
 
 \newcommand{\note}[1]{%
-\begin{mdframed}
+\begin{mdframed}\small
 \textbf{Замечание.~}#1\par
 \end{mdframed}%
 }
@@ -78,4 +78,7 @@ skipbelow=\medskipamount]{mdframed}
     \end{mdframed}
 }
 
-\newcommand{\average}[1]{\ensuremath{\left<#1\right>}}
+\newcommand*{\average}[1]{\ensuremath{\left<#1\right>}}
+\newcommand*{\limaverage}[1]{\ensuremath{\overline{#1}}}
+
+\graphicspath{{./images/}}
