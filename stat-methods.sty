@@ -12,7 +12,7 @@
 
 \RequirePackage[font=small, labelsep=period]{caption}
 \RequirePackage[pdftex]{geometry}
-\geometry{inner=1.5cm, outer=1.5cm, top=1.5cm, bottom=1.8cm}
+\geometry{inner=1.5cm, outer=1.5cm, top=1.4cm, bottom=1.8cm}
 
 %%% Language setting for (xe|lua)latex %%%
 % \RequirePackage{fontspec}
@@ -82,3 +82,29 @@ skipbelow=\medskipamount]{mdframed}
 \newcommand*{\limaverage}[1]{\ensuremath{\overline{#1}}}
 
 \graphicspath{{./images/}}
+
+% заголовки
+\usepackage[small, raggedright, explicit]{titlesec}
+
+% \setlength{\cftbeforetoctitleskip}{0pt}
+% \setlength{\cftaftertoctitleskip}{1pc}
+
+\titlespacing{\chapter}{0pt}{2pc}{1pc}
+\titleclass{\chapter}{straight}
+\titleformat{\chapter}[hang]{\large}%
+{\bfseries\thechapter.}{1ex}{\raggedright\bfseries\MakeUppercase{#1}}
+
+% \renewcommand*{\thesection}{\S\,\arabic{chapter}.\arabic{section}}
+
+\titlespacing{\section}{0pt}{*2}{*1}
+\titleformat{\section}[hang]{\bfseries}{\thesection.}{1ex}{#1}
+
+\titlespacing{\subsection}{0pt}{*2}{*1}
+\titleformat{\subsection}[hang]{\small\bfseries}{\thesubsection.}{1ex}{#1}
+
+\titlespacing{\paragraph}{\parindent}{0pt}{1ex}
+\titleformat{\paragraph}[runin]{\sffamily}{}{}{#1}
+
+\usepackage{enumitem}
+\setlist[description]{font={\normalfont\sffamily}}
+%
