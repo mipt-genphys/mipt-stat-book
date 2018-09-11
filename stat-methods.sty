@@ -1,19 +1,10 @@
-\RequirePackage{cmap} % для корректной генерации русского текста в PDF
-\RequirePackage{mathtext} % русские буквы в формулах
-\RequirePackage[T2A]{fontenc}
-\RequirePackage[utf8]{inputenc}
+
 \RequirePackage[russian]{babel}
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 
-\RequirePackage{indentfirst} % отступ первого абзаца
-\RequirePackage{icomma} % правильная десятичная запятая
-
-\RequirePackage[font=small, labelsep=period]{caption}
-\RequirePackage[pdftex]{geometry}
-\geometry{inner=1.5cm, outer=1.5cm, top=1.4cm, bottom=1.8cm}
-
+\RequirePackage{ifpdf}
 \RequirePackage{ifluatex}
 
 \ifluatex
@@ -30,6 +21,11 @@
     \setdefaultlanguage[spelling=modern]{russian}
 
     \RequirePackage{cyrmathtext}
+\else
+    \RequirePackage{cmap} % для корректной генерации русского текста в PDF
+    \RequirePackage{mathtext} % русские буквы в формулах
+    \RequirePackage[T2A]{fontenc}
+    \RequirePackage[utf8]{inputenc}
 \fi
 
 \RequirePackage{hyperref}
@@ -43,32 +39,69 @@
 
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
+\graphicspath{{./images/}}
+
 \RequirePackage{todonotes}
 
-\RequirePackage[%
-    leftmargin=1pt,%
-    topline=false,%
-    bottomline=false,%
-    skipabove=\medskipamount,%
-    skipbelow=\medskipamount
-]{mdframed}
+\ifpdf
+    \RequirePackage{indentfirst} % отступ первого абзаца
+    \RequirePackage{icomma} % правильная десятичная запятая
+
+    \RequirePackage[font=small, labelsep=period]{caption}
+    \RequirePackage[pdftex]{geometry}
+    \geometry{inner=1.5cm, outer=1.5cm, top=1.4cm, bottom=1.8cm}
+
+    \RequirePackage[%
+        leftmargin=1pt,%
+        topline=false,%
+        bottomline=false,%
+        skipabove=\medskipamount,%
+        skipbelow=\medskipamount
+    ]{mdframed}
+
+    % заголовки
+    \RequirePackage[small, raggedright, explicit]{titlesec}
+
+    % \setlength{\cftbeforetoctitleskip}{0pt}
+    % \setlength{\cftaftertoctitleskip}{1pc}
+
+    \titlespacing{\chapter}{0pt}{2pc}{1pc}
+    \titleclass{\chapter}{straight}
+    \titleformat{\chapter}[hang]{\large}%
+    {\bfseries\thechapter.}{1ex}{\raggedright\bfseries\MakeUppercase{#1}}
+
+    % \renewcommand*{\thesection}{\S\,\arabic{chapter}.\arabic{section}}
+
+    \titlespacing{\section}{0pt}{*2}{*1}
+    \titleformat{\section}[hang]{\bfseries}{\thesection.}{1ex}{#1}
+
+    \titlespacing{\subsection}{0pt}{*2}{*1}
+    \titleformat{\subsection}[hang]{\small\bfseries}{\thesubsection.}{1ex}{#1}
+
+    \titlespacing{\paragraph}{\parindent}{0pt}{1ex}
+    \titleformat{\paragraph}[runin]{\sffamily}{}{}{#1}
+
+    \RequirePackage{enumitem}
+    \setlist[description]{font={\normalfont\sffamily}}
+    %
+\fi
 
 \newcommand{\example}[1]{%
-\begin{mdframed}\small
-\textbf{Пример.~}#1\par
-\end{mdframed}%
+    \begin{mdframed}\small
+        \textbf{Пример.~}#1\par
+    \end{mdframed}%
 }
 
 \newcommand{\exercise}[1]{%
-\begin{mdframed}\small
-\textbf{Упражнение.~}#1\par
-\end{mdframed}%
+    \begin{mdframed}\small
+        \textbf{Упражнение.~}#1\par
+    \end{mdframed}%
 }
 
 \newcommand{\note}[1]{%
-\begin{mdframed}\small
-\textbf{Замечание.~}#1\par
-\end{mdframed}%
+    \begin{mdframed}\small
+        \textbf{Замечание.~}#1\par
+    \end{mdframed}%
 }
 
 \newenvironment{longnote}{%
@@ -85,31 +118,3 @@
 
 \newcommand*{\average}[1]{\ensuremath{\left<#1\right>}}
 \newcommand*{\limaverage}[1]{\ensuremath{\overline{#1}}}
-
-\graphicspath{{./images/}}
-
-% заголовки
-\usepackage[small, raggedright, explicit]{titlesec}
-
-% \setlength{\cftbeforetoctitleskip}{0pt}
-% \setlength{\cftaftertoctitleskip}{1pc}
-
-\titlespacing{\chapter}{0pt}{2pc}{1pc}
-\titleclass{\chapter}{straight}
-\titleformat{\chapter}[hang]{\large}%
-{\bfseries\thechapter.}{1ex}{\raggedright\bfseries\MakeUppercase{#1}}
-
-% \renewcommand*{\thesection}{\S\,\arabic{chapter}.\arabic{section}}
-
-\titlespacing{\section}{0pt}{*2}{*1}
-\titleformat{\section}[hang]{\bfseries}{\thesection.}{1ex}{#1}
-
-\titlespacing{\subsection}{0pt}{*2}{*1}
-\titleformat{\subsection}[hang]{\small\bfseries}{\thesubsection.}{1ex}{#1}
-
-\titlespacing{\paragraph}{\parindent}{0pt}{1ex}
-\titleformat{\paragraph}[runin]{\sffamily}{}{}{#1}
-
-\usepackage{enumitem}
-\setlist[description]{font={\normalfont\sffamily}}
-%

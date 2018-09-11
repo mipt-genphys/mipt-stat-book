@@ -1,0 +1,25 @@
+package LaTeXML::Package::Pool;
+use strict;
+use warnings;
+use LaTeXML::Package;
+
+InputDefinitions('stat-methods',type=>'sty',noltxml=>1); 
+
+DefMacro('\listoftodos','');
+
+RequirePackage('framed');
+
+DefEnvironment('{mdframed}', sub {
+    my ($document, %props) = @_;
+    $_[0]->maybeCloseElement('ltx:p');    # this starts a new vertical block
+    insertBlock($document, $props{body},
+      framed     => 'rectangle',
+      framecolor => $props{framecolor},
+      cssstyle   => 'padding-top:' . $props{margin} . 'pt;padding-bottom:' . $props{margin} . 'pt'); },
+  beforeDigest => sub {
+    Let('\par', '\inner@par');
+    Let('\\\\', '\inner@par'); },
+  properties => sub { (framecolor => Black,
+      margin => '12pt'); });
+
+1;

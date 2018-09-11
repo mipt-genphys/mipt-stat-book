@@ -41,6 +41,7 @@ open class BuildHTMLTask : DefaultTask() {
         val xmlLine = project.platformCommand + listOf("latexml",
                 "--destination=\"${convertPath(project, xmlFile.absolutePath)}\"",
                 "--inputencoding=utf8",
+//                "--includestyles",
                 "\"${convertPath(project, sourceFile.absolutePath)}\""
         )
 
@@ -59,10 +60,10 @@ open class BuildHTMLTask : DefaultTask() {
                 "latexmlpost",
                 "--destination=${convertPath(project, htmlDir.toString())}/${xmlFile.name.replaceFirst("\\.[^.]+$".toRegex(), "")}.html",
                 "--format=html5",
-                "--split",
-                "--splitat=section",
+//                "--split",
+//                "--splitat=section",
                 "--javascript='http://fred-wang.github.io/mathjax.js/mpadded-min.js'",
-                "--css=labnik.css",
+//                "--css=labnik.css",
                 convertPath(project, xmlFile.absolutePath)
         )
 

@@ -9,7 +9,7 @@ import java.io.File
  */
 fun convertPath(project: Project, path: String): String {
     if (project.platform == "wsl") {
-        return path.replace("([A-Z]):".toRegex()) { "/mnt/${it.groupValues[1]}" }.replace("\\\\", "/")
+        return path.replace("([A-Z]):".toRegex()) { "/mnt/${it.groupValues[1].toLowerCase()}" }.replace("\\", "/")
     } else {
         return path
     }
