@@ -14,19 +14,23 @@
 \RequirePackage[pdftex]{geometry}
 \geometry{inner=1.5cm, outer=1.5cm, top=1.4cm, bottom=1.8cm}
 
+\RequirePackage{ifluatex}
+
+\ifluatex
 %%% Language setting for (xe|lua)latex %%%
-% \RequirePackage{fontspec}
-% \RequirePackage[math-style=TeX]{unicode-math}
-% \setmainfont{CMU Serif}
-% \setsansfont{CMU Sans Serif}
-% \setmonofont{CMU Typewriter Text}
-% \newfontfamily{\cyrillicfonttt}{CMU Serif}
-% \setmathfont{XITS Math}[math-style=TeX]
+    \RequirePackage{fontspec}
+    \RequirePackage[math-style=TeX]{unicode-math}
+    \setmainfont{CMU Serif}
+    \setsansfont{CMU Sans Serif}
+    \setmonofont{CMU Typewriter Text}
+    \newfontfamily{\cyrillicfonttt}{CMU Serif}
+    \setmathfont{XITS Math}[math-style=TeX]
 
-% \RequirePackage{polyglossia}
-% \setdefaultlanguage[spelling=modern]{russian}
+    \RequirePackage{polyglossia}
+    \setdefaultlanguage[spelling=modern]{russian}
 
-% \RequirePackage{cyrmathtext}
+    \RequirePackage{cyrmathtext}
+\fi
 
 \RequirePackage{hyperref}
 \hypersetup{%
@@ -42,11 +46,12 @@
 \RequirePackage{todonotes}
 
 \RequirePackage[%
-leftmargin=1pt,%
-topline=false,%
-bottomline=false,%
-skipabove=\medskipamount,%
-skipbelow=\medskipamount]{mdframed}
+    leftmargin=1pt,%
+    topline=false,%
+    bottomline=false,%
+    skipabove=\medskipamount,%
+    skipbelow=\medskipamount
+]{mdframed}
 
 \newcommand{\example}[1]{%
 \begin{mdframed}\small

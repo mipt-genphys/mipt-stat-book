@@ -8,7 +8,7 @@
 *.orig
 *.project
 
-build/**
+**/build/**
 .gradle
 .vscode
 .project
