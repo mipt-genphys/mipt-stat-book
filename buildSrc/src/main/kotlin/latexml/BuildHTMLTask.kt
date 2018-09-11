@@ -58,7 +58,7 @@ open class BuildHTMLTask : DefaultTask() {
 
         val htmlLine =  project.platformCommand + listOf(
                 "latexmlpost",
-                "--destination=${convertPath(project, htmlDir.toString())}/${xmlFile.name.replaceFirst("\\.[^.]+$".toRegex(), "")}.html",
+                "--destination=${convertPath(project, htmlDir.toString())}/index.html",
                 "--format=html5",
 //                "--split",
 //                "--splitat=section",

@@ -1,0 +1,24 @@
+//deploy configuration
+remotes {
+    mipt {
+        knownHosts = allowAnyHosts
+        role 'webServers'
+        host = 'npm.mipt.ru'
+        user = findProperty('npm.user')
+        password = findProperty('npm.pass')
+    }
+}
+
+task deploy {
+    group 'html'
+    doLast {
+        println "Starting deploy"
+        ssh.run {
+            session(remotes.mipt) {
+                for (f in new File(buildDir,"html").listFiles()) {
+                    put from: f, into: '/var/www/books/stat-methods', fileTransfer: 'scp'
+                }
+            }
+        }
+    }
+}

@@ -14,3 +14,5 @@
 .project
 .settings
 .idea/
+
+gradle.properties
