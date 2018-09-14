@@ -16,7 +16,7 @@ task deploy {
         ssh.run {
             session(remotes.mipt) {
                 for (f in new File(buildDir,"html").listFiles()) {
-                    put from: f, into: '/var/www/books/stat-methods', fileTransfer: 'scp'
+                    put from: f, into: '/var/www/books/lab-intro', fileTransfer: 'scp'
                 }
             }
         }

@@ -279,8 +279,8 @@ $\chi^2$ или наименьших квадратов может быть по
 Найдём такие коэффициенты $k$ и $b$, чтобы сумма квадратов таких
 расстояний для всех точек была минимальной:
 \begin{equation}
-S\!\left(k,b\right)=\sum\limits _{i=1}^{n}\Delta
-y_{i}^{2}\to\mathrm{min}.\label{eq:mnk_S}
+    S\!\left(k,b\right)=\sum\limits _{i=1}^{n}\Delta
+    y_{i}^{2}\to\mathrm{min}.\label{eq:mnk_S}
 \end{equation}
 Данный метод построения наилучшей прямой называют \emph{методом наименьших
 квадратов} (МНК).
@@ -301,8 +301,9 @@ k=\frac{\sum\limits _{i=1}^{n}x_{i}y_{i}}{\sum\limits _{i=1}^{n}x_{i}^{2}}.
 Поделив числитель и знаменатель на $n$, этот результат можно записать
 более компактно:
 \begin{equation}
-\boxed{k=\frac{\left\langle xy\right\rangle }{\left\langle x^{2}\right\rangle
-}}.\label{eq:MNK0}
+    \label{eq:MNK0}
+    \boxed{k=\frac{\left\langle xy\right\rangle }{\left\langle x^{2}\right\rangle
+    }}.
 \end{equation}
 Угловые скобки означают усреднение по всем экспериментальным точкам:
 \[
@@ -314,17 +315,18 @@ _{i=1}^{n}\left(\ldots\right)_{i}
 минимум как по $k$, так и по $b$. Поэтому имеем систему из двух
 уравнений:
 \begin{align*}
-\frac{\partial S}{\partial k} & =-\sum\limits
-_{i=1}^{n}2x_{i}\left(y_{i}-kx_{i}-b\right)=0,\\
-\frac{\partial S}{\partial b} & =-\sum\limits
-_{i=1}^{n}2\left(y_{i}-kx_{i}-b\right)=0.
+    \frac{\partial S}{\partial k} & =-\sum\limits
+    _{i=1}^{n}2x_{i}\left(y_{i}-kx_{i}-b\right)=0,\\
+    \frac{\partial S}{\partial b} & =-\sum\limits
+    _{i=1}^{n}2\left(y_{i}-kx_{i}-b\right)=0.
 \end{align*}
 Решая систему, можно получить
 \begin{equation}
-\boxed{k=\frac{\left\langle xy\right\rangle -\left\langle x\right\rangle
-\left\langle y\right\rangle }{\left\langle x^{2}\right\rangle -\left\langle
-x\right\rangle ^{2}},\qquad b=\left\langle y\right\rangle -k\left\langle
-x\right\rangle }.\label{eq:MNK}
+    \label{eq:MNK}
+    \boxed{k=\frac{\left\langle xy\right\rangle -\left\langle x\right\rangle
+    \left\langle y\right\rangle }{\left\langle x^{2}\right\rangle -\left\langle
+    x\right\rangle ^{2}},\qquad b=\left\langle y\right\rangle -k\left\langle
+    x\right\rangle }.
 \end{equation}
 Эти соотношения и есть решение задачи о построении наилучшей прямой
 методом наименьших квадратов.
@@ -359,15 +361,14 @@ x\right\rangle \right)^{2}\right\rangle $).
 
 Пользуясь в этих предположениях формулами для погрешностей косвенных
 измерений (см. раздел (\ref{sec:kosv})) можно получить следующие
-соотношения (выкладки здесь весьма громоздки, подробности можно найти
-в п. (\ref{subsec:MMP})):
+соотношения:
 \begin{equation}
-\sigma_{k}=\sqrt{\frac{1}{n-2}\left(\frac{D_{yy}}{D_{xx}}-k^{2}\right)},\label{
-eq:MNK_sigma}
+    \label{eq:MNK_sigma}
+    \sigma_{k}=\sqrt{\frac{1}{n-2}\left(\frac{D_{yy}}{D_{xx}}-k^{2}\right)},
 \end{equation}
 \begin{equation}
-\sigma_{b}=\sigma_{k}\sqrt{\left\langle x^{2}\right\rangle
-},\label{eq:MNK_sigma_b}
+    \label{eq:MNK_sigma_b}
+    \sigma_{b}=\sigma_{k}\sqrt{\left\langle x^{2}\right\rangle},
 \end{equation}
 где использованы введённые выше сокращённые обозначения (\ref{eq:cov}).
 Коэффициент $n-2$ отражает число независимых <<степеней
