@@ -79,7 +79,7 @@
     \titleformat{\subsection}[hang]{\small\bfseries}{\thesubsection.}{1ex}{#1}
 
     \titlespacing{\paragraph}{\parindent}{0pt}{1ex}
-    \titleformat{\paragraph}[runin]{\sffamily}{}{}{#1}
+    \titleformat{\paragraph}[runin]{\bfseries\sffamily}{}{}{#1}
 
     \RequirePackage{enumitem}
     \setlist[description]{font={\normalfont\sffamily}}
@@ -87,29 +87,29 @@
 \fi
 
 \newcommand{\example}[1]{%
-    \\
+%     \\
     \begin{mdframed}\small
         \textbf{Пример.~}#1\par
     \end{mdframed}%
 }
 
 \newcommand{\exercise}[1]{%
-    \\
+%     \\
     \begin{mdframed}\small
         \textbf{Упражнение.~}#1\par
     \end{mdframed}%
 }
 
 \newcommand{\note}[1]{%
-    \\
+%     \\
     \begin{mdframed}\small
         \textbf{Замечание.~}#1\par
     \end{mdframed}%
 }
 
 \newenvironment{longnote}{%
-\\
-\begin{mdframed}
+% \\
+\begin{mdframed}\small
 }{%
 \end{mdframed}%
 }
