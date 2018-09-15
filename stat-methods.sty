@@ -39,6 +39,8 @@
 
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
+\RequirePackage{csquotes}
+
 \graphicspath{{./images/}}
 
 \RequirePackage{todonotes}
@@ -87,29 +89,29 @@
 \fi
 
 \newcommand{\example}[1]{%
-%     \\
+    \par
     \begin{mdframed}\small
         \textbf{Пример.~}#1\par
     \end{mdframed}%
 }
 
 \newcommand{\exercise}[1]{%
-%     \\
+    \par
     \begin{mdframed}\small
         \textbf{Упражнение.~}#1\par
     \end{mdframed}%
 }
 
 \newcommand{\note}[1]{%
-%     \\
+    \par
     \begin{mdframed}\small
         \textbf{Замечание.~}#1\par
     \end{mdframed}%
 }
 
 \newenvironment{longnote}{%
-% \\
-\begin{mdframed}\small
+\par
+\begin{mdframed}
 }{%
 \end{mdframed}%
 }
