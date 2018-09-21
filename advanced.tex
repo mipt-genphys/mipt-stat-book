@@ -34,8 +34,8 @@ k = r_{xy}\frac{\sigma_y}{\sigma_x}.
 \emph{коррелируют} между собой (от \emph{англ.} correlate ---
 находиться в связи).
 
-\todo[inline,author=ppv]{А не объяснить ли заодно, что чудный R^2, который выдаёт эксель,
-это для прямой и есть r^2?}
+\todo[inline,author=ppv]{А не объяснить ли заодно, что чудный $R^2$, который выдаёт эксель,
+это для прямой и есть $r^2$?}
 
 \paragraph{Отсутствие корреляции $\protect\not\Rightarrow$ независимость.}
 
@@ -187,20 +187,20 @@ $\theta$). Функцию $I(\theta)$ также называют \emph{инфо
 \paragraph{Доказательство в одномерном случае.}
 Обозначим
 \[
-W \equiv \frac{\partial \ln L} {\partial \theta} =
+U \equiv \frac{\partial \ln L} {\partial \theta} =
 \frac{1}{L}\frac{\partial L}{\partial \theta}
 \]
 и найдём математическое ожидание этой функции:
 \[
-\limaverage{W} =
-\int W\cdot L  d\mathbf{y} =
+\limaverage{U} =
+\int U\cdot L  d\mathbf{y} =
 \int \frac{\partial L}{\partial \theta} d\mathbf{y} =
 \frac{\partial}{\partial \theta} \int{L d\mathbf{y}} = 0.
 \]
 Теперь рассмотрим ковариацию параметра $\theta$ и функции
-$W$:
+$U$:
 \begin{equation}
-\limaverage{\hat\theta\cdot W} =
+\limaverage{\hat\theta\cdot U} 
 = \frac{\partial}{\partial \theta} \int{\hat\theta L d\mathbf{y}} =
 \frac{\partial \limaverage{\hat\theta}}{\partial \theta}.
 \end{equation}
@@ -209,18 +209,18 @@ $W$:
 поэтому последнее выражение есть просто единица.
 Согласно неравенству Коши--Буняковского имеем
 \[
-\sigma^2 (\hat\theta) \cdot \sigma^2 (W) \geq
-\left| \limaverage{\hat\theta \cdot W} \right| = 1,
+\sigma^2 (\hat\theta) \cdot \sigma^2 (U) \geq
+\left| \limaverage{\hat\theta \cdot U} \right| = 1,
 \]
 откуда и следует сделанное утверждение.
 
 \paragraph{Следствие.}
 Максимальная эффективность достигается в том случае, если величины
-$\hat\theta$ и $W$ являются \emph{коррелируют} друг с другом.
+$\hat\theta$ и $U$ являются \emph{коррелируют} друг с другом.
 Оценка, максимизирующая функцию $L(\mathbf{y},\theta)$
 (метод максимального правдоподобия), является \emph{состоятельной},
 \emph{несмещенной}, кроме того совпадает с оценкой вида
-$W(\mathbf{y}, \hat\theta) = 0$, а значит является \emph{максимально эффективной}.
+$U(\mathbf{y}, \hat\theta) = 0$, а значит является \emph{максимально эффективной}.
 
 % \section{Принцип максимального правдоподобия и наилучшая оценка среднего}
 %
@@ -473,7 +473,7 @@ $k$~--- наклон прямой и $b$~--- смещение. Все переч
 правдоподобия и минимума в случае методов семейства наименьших
 квадратов) и интерпретация результатов требуют использования специальных
 программных пакетов.
-\todo[inline,authro=ppv]{"требуют использования специальных
+\todo[inline,author=ppv]{"требуют использования специальных
 программных пакетов" --- это неправда. Ничто не мешает написать собственную 
 доморощенную функцию. Может быть все-таки что-то вроде "требует использования численных 
 методов, реализованных в специализированных пакетах"?}
