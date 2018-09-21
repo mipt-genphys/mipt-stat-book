@@ -2,26 +2,15 @@
 
 \small
 
-\section{Независимые величины. Корреляция}
+\section{Корреляции}
 
-Рассмотрим две физические величины $x$ и $y$. Величины называют
-\emph{независимыми} если результат измерения одной из них никак не
-влияет на результат измерения другой.
-
-Обозначим отклонения от средних как $\Delta x=x-\average{x}$ и $\Delta
-y=y-\average{y}$.
-Средние значения отклонений равны, очевидно, нулю: $\average{\Delta
-x}=x-\average{x}=0$,
-$\average{\Delta y}=0$. Из независимости величин $x$ и $y$ следует,
-что среднее значение от произведения $\average{\Delta x\cdot\Delta y}$
-равно произведению средних $\average{\Delta x}\cdot\average{\Delta y}$
-и, следовательно, равно нулю:
-\begin{equation}
-\average{\Delta x\cdot\Delta y}=\average{\Delta x}\cdot\average{\Delta
-y}=0.\label{eq:indep}
-\end{equation}
-
-Если $x$ и $y$ не являются независимыми, среднее значение произведения
+Напомним, если величины $x$ и $y$ независимы, то среднее значение (математическое ожидание) произведения отклонений $\Delta x = x-\limaverage{x}$ и $\Delta y = y - \limaverage{y}$
+равно нулю:
+\begin{equation*}
+\limaverage{\Delta x\cdot\Delta y}=\limaverage{\Delta x}\cdot\limaverage{\Delta
+y}=0.
+\end{equation*}
+Если же $x$ и $y$ не являются полностью независимыми, среднее значение произведения
 их отклонений может быть использовано как количественная мера их зависимости.
 Наиболее употребительной мерой зависимости двух случайных величин
 является \emph{коэффициент линейной корреляции}:
@@ -35,9 +24,18 @@ y}}{\sigma_{x}\cdot\sigma_{y}}.\label{eq:pearson}
 $y=kx+b$ нетрудно получить $r=1$ при $k>0$ и $r=-1$ при $k<0$.
 Примеры промежуточных случаев представлены на рис. TODO.
 
+\note{Угловой коэффициент прямой в задаче линейной регрессии \eqref{eq:MNK} выражается
+через коэффициент корреляции как
+\begin{equation*}
+k = r_{xy}\frac{\sigma_y}{\sigma_x}.
+\end{equation*}}
+
 Если коэффициент $r_{xy}$ близок к единице, говорят, что величины
 \emph{коррелируют} между собой (от \emph{англ.} correlate ---
 находиться в связи).
+
+\todo[inline,author=ppv]{А не объяснить ли заодно, что чудный R^2, который выдаёт эксель,
+это для прямой и есть r^2?}
 
 \paragraph{Отсутствие корреляции $\protect\not\Rightarrow$ независимость.}
 
@@ -383,7 +381,7 @@ $W(\mathbf{y}, \hat\theta) = 0$, а значит является \emph{макс
 % при каждом $x_{i}$), либо оценены из каких-то дополнительных соображений
 % (например, как инструментальная погрешность).
 
-\section{Погрешности коэффициентов построения прямой по МНК}
+\section{Погрешности коэффициентов построения прямой}
 
 Проведём подробный вывод для погрешностей коэффициентов наилучшей
 прямой $\sigma_{k}$ и $\sigma_{b}$. Воспользуемся общей формулой
@@ -397,14 +395,15 @@ $W(\mathbf{y}, \hat\theta) = 0$, а значит является \emph{макс
 \[
 \frac{\partial k}{\partial y_{i}}=\frac{1}{D_{xx}}\frac{\partial}{\partial y_{i}}\left(\frac{1}{W}\sum w_{i}x_{i}y_{i}-\left\langle x\right\rangle \frac{1}{W}\sum w_{i}y_{i}\right)=\frac{w_{i}\left(x_{i}-\left\langle x\right\rangle \right)}{WD_{xx}},
 \]
-где $D_{xx}=\left\langle x^{2}\right\rangle -\left\langle x\right\rangle ^{2}=\left\langle (x-\left\langle x\right\rangle )^{2}\right\rangle $.
+где $D_{xx}=\average{x^{2}} -\average{x}^{2}$, $W=\sum_i \sigma_{y_i}^{-2}$.
+Под угловыми скобками здесь понимается выборочное среднее с весами $w_i=1/\sigma_{y_i}^2$.
 Тогда
 \[
 \sigma_{k}^{2}=\frac{1}{W^{2}D_{xx}^{2}}\sum\limits _{i}w_{i}^{2}\left(x_{i}-\left\langle x\right\rangle \right)^{2}\sigma_{y_{i}}^{2}.
 \]
 Учитывая, что $w_{i}\sigma_{y_{i}}^{2}=1$, получим
 \begin{equation}
-\boxed{\sigma_{k}^{2}=\frac{1}{D_{xx}\cdot\sum\limits _{i}\sigma_{y_{i}}^{-2}}}.\label{eq:MMP_sigma_k}
+\sigma_{k}^{2}=\frac{1}{W D_{xx}}.\label{eq:MMP_sigma_k}
 \end{equation}
 
 Аналогично, для погрешности свободного члена имеем
@@ -416,16 +415,19 @@ $W(\mathbf{y}, \hat\theta) = 0$, а значит является \emph{макс
 \frac{\partial b}{\partial y_{i}}=\frac{w_{i}}{W}+\frac{\partial k}{\partial y_{i}}\left\langle x\right\rangle =\frac{w_{i}}{W}\left(1-\frac{x_{i}-\left\langle x\right\rangle }{\left\langle x^{2}\right\rangle -\left\langle x\right\rangle ^{2}}\left\langle x\right\rangle \right)=\frac{w_{i}}{W}\frac{\left\langle x^{2}\right\rangle -x_{i}\left\langle x\right\rangle }{D_{xx}}.
 \]
 Отсюда, пользуясь (\ref{eq:MMP_sigma_k}), приходим к формуле (\ref{eq:MNK_sigma_b}):
-\[
-\sigma_{b}^{2}=\sigma_{k}^{2}\frac{\left\langle \left(\left\langle x^{2}\right\rangle -x\left\langle x\right\rangle \right)^{2}\right\rangle }{\left\langle x^{2}\right\rangle -\left\langle x\right\rangle ^{2}}=\sigma_{k}^{2}\left\langle x^{2}\right\rangle .
-\]
+\begin{equation}
+\sigma_{b}^{2}=\sigma_{k}^{2}
+\frac{\left\langle \left(\left\langle x^{2}\right\rangle -x\left\langle x\right\rangle \right)^{2}\right\rangle }%
+{D_{xx}}=
+\sigma_{k}^{2}\left\langle x^{2}\right\rangle .
+\end{equation}
 
 \paragraph{Случай $\sigma_{y}=\mathrm{const}$.}
-
-В частном случае, расмотренном в п. (\ref{sec:MNK}),
+В частном случае метода наименьших квадратов (п. \ref{sec:MNK}),
 формула (\ref{eq:MMP_sigma_k}) упрощается:
 \begin{equation}
-\boxed{\sigma_{k}^{2}=\frac{\sigma_{y}^{2}}{nD_{xx}},\qquad\sigma_{b}^{2}=\sigma_{k}^{2}\left\langle x^{2}\right\rangle }.\label{eq:MMP_sigma_k_simple}
+\sigma_{k}^{2}=\frac{\sigma_{y}^{2}}{nD_{xx}},\qquad\sigma_{b}^{2}=\sigma_{k}^{2}
+\average{x^{2}}.\label{eq:MMP_sigma_k_simple}
 \end{equation}
 Здесь величина $\sigma_{y}$ может быть оценена непосредственно из
 экспериментальных данных:
@@ -433,7 +435,7 @@ $W(\mathbf{y}, \hat\theta) = 0$, а значит является \emph{макс
 \sigma_{y}\approx\sqrt{\frac{1}{n-2}\sum_{i}\Delta y_{i}^{2}},\label{eq:MMP_sigma_y}
 \end{equation}
 где $n-2$ --- число \textquote{степеней свободы}
-для приращений $\Delta y_{i}$ ($n$ точек за вычетом двух связей
+для приращений $\Delta y_{i} = y_i - (kx_i+b)$ ($n$ точек за вычетом двух связей
 (\ref{eq:MMP})).
 
 Формул (\ref{eq:MMP_sigma_k_simple}) и (\ref{eq:MMP_sigma_y}),
@@ -471,6 +473,10 @@ $k$~--- наклон прямой и $b$~--- смещение. Все переч
 правдоподобия и минимума в случае методов семейства наименьших
 квадратов) и интерпретация результатов требуют использования специальных
 программных пакетов.
+\todo[inline,authro=ppv]{"требуют использования специальных
+программных пакетов" --- это неправда. Ничто не мешает написать собственную 
+доморощенную функцию. Может быть все-таки что-то вроде "требует использования численных 
+методов, реализованных в специализированных пакетах"?}
 
 
 \subsection{Доверительные области в многомерном случае}
@@ -481,7 +487,7 @@ $k$~--- наклон прямой и $b$~--- смещение. Все переч
 такой же, как и для одномерных доверительных интервалов. Требуется найти
 такую областью пространства параметров $\Omega$, для которой
 вероятностное содержание для оценки параметра $\hat \theta$ (или
-самого параметра $\theta$ в засимости от того, какой философии вы
+самого параметра $\theta$ в зависимости от того, какой философии вы
 придерживаетесь) будет равно некоторой наперед заданной величине
 $\alpha$:
 \begin{equation}
@@ -497,6 +503,7 @@ P(\theta \in \Omega) = \int_\Omega{L(X | \theta)}d\Omega = \alpha.
   владения вычислительной математикой и компьютерными методами. В случае
   большего числа параметров, как правило надо использовать специально
   разработанные для этого пакеты.
+  \todo[inline,author=ppv]{Опять пакеты.}
 \item Определить центральный интервал для гипер-области гораздо сложнее, чем
   сделать это для одномерного отрезка. Единых правил для выбора такой
   области не существует.
@@ -512,22 +519,24 @@ P(\theta \in \Omega) = \int_\Omega{L(X | \theta)}d\Omega = \alpha.
 функция правдоподобия будет похожа на многомерное нормальное
 распределение:
 \begin{equation}
-    L(\theta) = \frac{1}{(2 \pi)^{n/2}\left|\Sigma\right|^{1/2}} e^{-\frac{1}{2}
-(x - \mu)^T \Sigma^{-1} (x - \mu)},
+    L(\theta) = \frac{1}{(2 \pi)^{n/2}\left|D\right|^{1/2}} e^{-\frac{1}{2}
+(x - \mu)^T D^{-1} (x - \mu)},
 \end{equation}
 где n~--- размерность вектора параметров, $\mu$~--- вектор
-наиболее вероятных значений, а $\Sigma$~--- ковариационная матрица распределения.
+наиболее вероятных значений, а $D$~--- ковариационная матрица распределения.
 
 Для многомерного нормального распределения, линии постоянного уровня (то
 есть поверхности, на которых значение плотности вероятности одинаковые)
 имеют вид гипер-эллипса, определяемого уравнением
-$(x - \mu)^T \Sigma^{-1} (x - \mu) = const$. Для любого вероятностного
+$(x - \mu)^T D^{-1} (x - \mu) = \mathrm{const}$. Для любого вероятностного
 содержания $\alpha$ можно подобрать эллипс, который будет
 удовлетворять условию на вероятностное содержание. Интерес правда
 представляет не эллипс (в случае размерности больше двух, его просто
 невозможно отобразить), а ковариацонная матрица. Диагональные элементы
 этой матрицы являются дисперсиями соответствующих параметров (с учетом
 всех корреляций параметров).
+
+\todo[inline,author=ppv]{Примерчик бы}
 
 \subsection{Использование пакета \texttt{scipy} для построение оценки}
 
