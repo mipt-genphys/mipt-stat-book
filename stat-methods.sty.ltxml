@@ -7,6 +7,8 @@ InputDefinitions('stat-methods',type=>'sty',noltxml=>1);
 
 DefMacro('\listoftodos','');
 
+DefMacro('\todo[]{}','');
+
 RequirePackage('framed');
 
 DefEnvironment('{mdframed}', sub {
@@ -19,7 +21,24 @@ DefEnvironment('{mdframed}', sub {
   beforeDigest => sub {
     Let('\par', '\inner@par');
     Let('\\\\', '\inner@par'); },
-  properties => sub { (framecolor => Black,
-      margin => '12pt'); });
+  properties => sub { (framecolor => Black, margin => '12pt'); }
+  );
+
+DefConstructor('\disclaimer{}',
+  "<ltx:rawhtml>"
+  ."<xhtml:div class=\"disclaimer\" style=\"border-style: solid;\"><xhtml:p>#1</xhtml:p></xhtml:div>"
+  ."</ltx:rawhtml>"
+);
+
+
+DefEnvironment('{minted} [] {}', 
+  "<ltx:rawhtml>"
+  ."<xhtml:div class=\"code\">"
+  ."<xhtml:pre><xhtml:code>"
+  ."#body"
+  ."</xhtml:code></xhtml:pre>"
+  ."</xhtml:div>"
+  ."</ltx:rawhtml>"
+);
 
 1;

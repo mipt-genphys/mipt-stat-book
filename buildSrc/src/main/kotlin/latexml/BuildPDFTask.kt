@@ -32,7 +32,15 @@ open class BuildPDFTask : DefaultTask() {
         logDir.mkdirs()
 
         val line = project.platformCommand +
-                listOf("lualatex", "-synctex=1", "-interaction=nonstopmode", "-output-directory=$outputDir", "-job-name=\"$target\"", sourceFile.absolutePath)
+                listOf(
+                    "lualatex", 
+                    "--synctex=1", 
+                    "--interaction=nonstopmode", 
+                    "--output-directory=$outputDir", 
+                    "--shell-escape", 
+                    "--job-name=\"$target\"", 
+                    sourceFile.absolutePath
+                    )
 
         logger.lifecycle("Using command line for fragment $target: ${line.joinToString(" ")}")
 

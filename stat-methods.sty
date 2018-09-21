@@ -21,7 +21,9 @@
     \RequirePackage{cyrmathtext}
 \else
     \RequirePackage{cmap} % для корректной генерации русского текста в PDF
-    \RequirePackage{mathtext} % русские буквы в формулах
+    \ifpdf
+        \RequirePackage{mathtext} % русские буквы в формулах
+    \fi
     \RequirePackage[T2A]{fontenc}
     \RequirePackage[utf8]{inputenc}
     \RequirePackage[russian]{babel}
@@ -34,18 +36,19 @@
     pdfencoding = auto%
 }
 
-\RequirePackage{minted}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{csquotes}
 
 \graphicspath{{./images/}}
 
-\RequirePackage{todonotes}
+\RequirePackage[disable]{todonotes}
 
 \ifpdf
     \RequirePackage{indentfirst} % отступ первого абзаца
     \RequirePackage{icomma} % правильная десятичная запятая
+
+    \RequirePackage[outputdir=build/pdf, cache=false]{minted}
 
     \RequirePackage[font=small, labelsep=period]{caption}
     \RequirePackage[pdftex]{geometry}
