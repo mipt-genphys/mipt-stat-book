@@ -14,6 +14,7 @@ task<BuildPDFTask>("buildPdf") {
 task<BuildHTMLTask>("buildHtml") {
     group = "html"
     source = "main"
+    split = "chapter"
 }
 
 tasks.findByName("build")?.let {

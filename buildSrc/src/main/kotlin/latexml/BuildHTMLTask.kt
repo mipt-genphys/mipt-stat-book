@@ -6,9 +6,13 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
 import java.io.File
 import java.io.FileOutputStream
+import java.nio.file.Files
 
 //TODO split into two tasks
 
+/**
+ * Task to create xml and html from latex sources
+ */
 open class BuildHTMLTask : DefaultTask() {
     @Option(description = "Source file name or template without `.tex` suffix")
     lateinit var source: String
@@ -25,6 +29,8 @@ open class BuildHTMLTask : DefaultTask() {
     @Option(description = "List of css imports")
     var css: MutableList<String> = ArrayList()
 
+    @Option(description = "Control of splitting. Empty string means no splitting")
+    var split: String = ""
 
     @OutputDirectory
     val logDir = File(project.buildDir, "logs")
@@ -34,6 +40,15 @@ open class BuildHTMLTask : DefaultTask() {
 
     @OutputDirectory
     val htmlDir = File(project.buildDir, "html")
+
+    init {
+        project.rootDir.walkTopDown()
+                .filter { it.extension in listOf("tex", "sty", "ltxml") }
+                .forEach { inputs.file(it) }
+        inputs.dir(project.file("images"))
+        inputs.dir(project.file("js"))
+        inputs.dir(project.file("css"))
+    }
 
     @TaskAction
     fun run() {
@@ -61,8 +76,7 @@ open class BuildHTMLTask : DefaultTask() {
         logger.lifecycle("Using command line for latexml $target: ${xmlLine.joinToString(" ")}")
         project.exec {
             workingDir = project.rootDir
-            errorOutput = FileOutputStream(File(logDir, "$target.xml.log"))
-            //TODO убрать первый аргумент для линукса
+            errorOutput = File(logDir, "$target.xml.log").outputStream()
             commandLine = xmlLine
         }
 
@@ -71,15 +85,28 @@ open class BuildHTMLTask : DefaultTask() {
         val jsArray = js.map { "--javascript='$it'" }.toTypedArray()
         val cssArray = css.map { "--css='$it'" }.toTypedArray()
 
-        val htmlLine = project.platformCommand + listOf(
-                "latexmlpost",
-                "--destination=${convertPath(project, htmlDir.toString())}/$target.html",
-                "--format=html5",
-//                "--split",
-//                "--splitat=section",
-                *jsArray,
-                *cssArray,
-                convertPath(project, xmlFile.absolutePath)
+        val htmlLine = ArrayList<String>()
+        htmlLine.addAll(project.platformCommand)
+
+        htmlLine.addAll(
+                listOf(
+                        "latexmlpost",
+                        "--destination=${convertPath(project, htmlDir.toString())}/$target.html",
+                        "--format=html5"
+                )
+        )
+
+        if (split.isNotBlank()) {
+            htmlLine.add("--split")
+            htmlLine.add("--splitat=$split")
+        }
+
+        htmlLine.addAll(
+                listOf(
+                        *jsArray,
+                        *cssArray,
+                        convertPath(project, xmlFile.absolutePath)
+                )
         )
 
         logger.lifecycle("Command line for latexmlpost $target: ${htmlLine.joinToString(" ")}")

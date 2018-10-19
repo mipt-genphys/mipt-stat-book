@@ -46,6 +46,14 @@ open class BuildPDFTask : DefaultTask() {
     val resources
         get() = File(project.rootDir, "images")
 
+    init {
+        project.rootDir.walkTopDown()
+                .filter { it.extension in listOf("tex", "sty") }
+                .forEach { inputs.file(it) }
+        inputs.dir(project.file("images"))
+
+    }
+
     @TaskAction
     fun run() {
         val target = target ?: source
@@ -60,7 +68,7 @@ open class BuildPDFTask : DefaultTask() {
                 listOf(
                         latexEngine.name.toLowerCase(),
                         "--output-directory=$outputDir",
-                        "--job-name=\"$target\"",
+                        "--jobname=\"$target\"",
                         *latexParameters.toTypedArray(),
                         sourceFile.absolutePath
                 )

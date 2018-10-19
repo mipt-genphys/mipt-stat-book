@@ -9,7 +9,13 @@ remotes {
     }
 }
 
-task deploy {
+task copyPdf(dependsOn: ":build", type: Copy){
+    group 'html'
+    from "build/pdf/maint.pdf"
+    into "build/html"
+}
+
+task deploy(dependsOn: ":copyPdf") {
     group 'html'
     doLast {
         println "Starting deploy"
