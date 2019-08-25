@@ -1,12 +1,12 @@
 
+\RequirePackage{ifpdf}
+\RequirePackage{ifluatex}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 
-\RequirePackage{ifpdf}
-\RequirePackage{ifluatex}
-
 \ifluatex
 %%% Language setting for (xe|lua)latex %%%
+
     \RequirePackage{fontspec}
     \RequirePackage[math-style=TeX]{unicode-math}
     \setmainfont{CMU Serif}
@@ -21,20 +21,25 @@
     \RequirePackage{cyrmathtext}
 \else
     \RequirePackage{cmap} % для корректной генерации русского текста в PDF
-    \ifpdf
-        \RequirePackage{mathtext} % русские буквы в формулах
-    \fi
+    \RequirePackage[unicode]{hyperref}
+    \RequirePackage{mathtext}
     \RequirePackage[T2A]{fontenc}
     \RequirePackage[utf8]{inputenc}
     \RequirePackage[russian]{babel}
+    
+    % косые интегралы ранят мои патриотические чувства
+    \DeclareSymbolFont{lsymb}{U}{euex}{m}{n}
+    \DeclareMathSymbol{\intop}{\mathop}{lsymb}{"52}
+    \DeclareMathSymbol{\ointop}{\mathop}{lsymb}{"48}
+    \DeclareMathSymbol{\smallint}{\mathop}{lsymb}{"52}
 \fi
 
-\RequirePackage{hyperref}
-\hypersetup{%
-    colorlinks = true,%
-    urlcolor = blue,%
-    pdfencoding = auto%
-}
+%\RequirePackage{hyperref}
+%\hypersetup{%
+%    colorlinks = true,%
+%    urlcolor = blue,%
+%    pdfencoding = auto%
+%}
 
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
@@ -48,11 +53,12 @@
     \RequirePackage{indentfirst} % отступ первого абзаца
     \RequirePackage{icomma} % правильная десятичная запятая
 
-    \RequirePackage[outputdir=build/pdf, cache=false]{minted}
+%    \RequirePackage[outputdir=build/pdf, cache=false]{minted}
 
     \RequirePackage[font=small, labelsep=period]{caption}
     \RequirePackage[pdftex]{geometry}
-    \geometry{inner=1.5cm, outer=1.5cm, top=1.4cm, bottom=1.8cm}
+    \geometry{inner=1.5cm, outer=1.5cm, top=1cm, bottom=1.5cm, 
+        footskip=0.8cm,heightrounded}
 
     \RequirePackage[%
         leftmargin=1pt,%
